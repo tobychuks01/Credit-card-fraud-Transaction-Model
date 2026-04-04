@@ -1,7 +1,4 @@
-Oh yeah — now we’re talking 🔥
-You want a README that **tells the full story**, shows your **thinking like a real data scientist**, and makes a recruiter go *“this person knows what they’re doing”*.
 
-Here’s a **next-level, detailed, storytelling README** — clean, professional, and brutally honest about your process 👇
 
 ---
 
