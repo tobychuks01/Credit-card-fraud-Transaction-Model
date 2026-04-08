@@ -140,22 +140,37 @@ Predict:
 ## 🚀 3. XGBoost (Best Model)
 
 ### 📊 Results
-=== ADVANCED XGBOOST RESULTS ===
-ROC-AUC SCORE: 0.9852393968279489
-CLASSIFICATION REPORT:
-               precision    recall  f1-score   support
 
-           0       1.00      1.00      1.00     56864
-           1       0.83      0.86      0.84        98
+| Metric        | Class 0 | Class 1 |
+|--------------|--------|--------|
+| Precision    | 1.00   | 0.83   |
+| Recall       | 1.00   | 0.86   |
+| F1-score     | 1.00   | 0.84   |
 
-    accuracy                           1.00     56962
-   macro avg       0.92      0.93      0.92     56962
-weighted avg       1.00      1.00      1.00     56962
+- **ROC-AUC:** 0.9852  
+- **Accuracy:** ~1.00  
 
-CONFUSION MATRIX:
- [[56847    17]
- [   14    84]]
+---
 
+### 🔍 Confusion Matrix
+
+|          | Pred 0 | Pred 1 |
+|----------|--------|--------|
+| Actual 0 | 56847  | 17     |
+| Actual 1 | 14     | 84     |
+
+---
+
+### 🧠 Key Insight
+
+- Best-performing model across all experiments  
+- Achieved the **highest ROC-AUC (~0.985)**  
+- Strong balance between **precision and recall**  
+- Successfully reduced both:
+  - False Negatives (missed fraud)
+  - False Positives (false alarms)
+
+> 🏆 **Selected as the final production model**
 - **Accuracy:** ~99.95%  
 - **ROC-AUC:** ~0.97  
 - **F1-score (Fraud):** ~84% Highest among all models  
@@ -176,21 +191,34 @@ CONFUSION MATRIX:
 
 ### 📊 Results
 
-=== ADVANCED LIGHTGBM RESULTS ===
-ROC-AUC SCORE: 0.9843001705465528
-CLASSIFICATION REPORT:
-               precision    recall  f1-score   support
+| Metric        | Class 0 | Class 1 |
+|--------------|--------|--------|
+| Precision    | 1.00   | 0.84   |
+| Recall       | 1.00   | 0.85   |
+| F1-score     | 1.00   | 0.84   |
 
-           0       1.00      1.00      1.00     56864
-           1       0.84      0.85      0.84        98
+- **ROC-AUC:** 0.9843  
+- **Accuracy:** ~1.00  
 
-    accuracy                           1.00     56962
-   macro avg       0.92      0.92      0.92     56962
-weighted avg       1.00      1.00      1.00     56962
+---
 
-CONFUSION MATRIX:
- [[56848    16]
- [   15    83]]
+### 🔍 Confusion Matrix
+
+|          | Pred 0 | Pred 1 |
+|----------|--------|--------|
+| Actual 0 | 56848  | 16     |
+| Actual 1 | 15     | 83     |
+
+---
+
+### 🧠 Key Insight
+
+- Performance very close to XGBoost  
+- Slightly lower ROC-AUC (**0.984 vs 0.985**)  
+- Maintains strong balance between **precision and recall**  
+- Efficient and faster to train compared to XGBoost  
+
+> ⚡ **Excellent alternative model with high performance and scalability**
 
 - Performance similar to XGBoost  
 - Faster training time  
@@ -201,6 +229,55 @@ CONFUSION MATRIX:
 - XGBoost still slightly better for this dataset
 
 ---
+
+# 📊 Model Comparison Summary
+
+To evaluate performance across models, the focus was placed on **fraud detection capability (Recall, F1-score, ROC-AUC)** rather than accuracy.
+
+---
+
+## 🧪 Model Performance Comparison
+
+| Model                | ROC-AUC | Precision (Fraud) | Recall (Fraud) | F1-score (Fraud) | Notes |
+|---------------------|--------|------------------|---------------|------------------|------|
+| Logistic Regression | 0.9522 | 0.8889           | 0.7579        | 0.8182           | Baseline model, struggled with non-linearity |
+| Random Forest       | ~0.96  | 0.8837           | 0.8000        | 0.8398           | Strong improvement, stable performance |
+| XGBoost (Advanced)  | **0.9852** | 0.83         | **0.86**      | **0.84**         | 🏆 Best overall model |
+| LightGBM (Advanced) | 0.9843 | **0.84**         | 0.85          | 0.84             | Fast and highly competitive |
+
+---
+
+## 🔍 Key Observations
+
+- **XGBoost achieved the highest ROC-AUC (~0.985)** → best overall separation of classes  
+- **LightGBM closely matched performance** with slightly faster training  
+- **Random Forest improved recall significantly** over Logistic Regression  
+- **Logistic Regression underperformed** due to inability to capture complex patterns  
+
+---
+
+## 🧠 Final Model Selection
+
+> 🏆 **XGBoost was selected as the final model** because it provided:
+
+- Best **overall performance (ROC-AUC)**
+- Strong **fraud detection (Recall = 0.86)**
+- Balanced **precision-recall tradeoff**
+- Robust performance across all evaluation metrics  
+
+---
+
+## ⚖️ Trade-Off Insight
+
+- Increasing recall (catching more fraud) often reduces precision (more false alarms)  
+- The final model strikes a **practical balance suitable for real-world deployment**
+
+---
+
+## 💡 Key Takeaway
+
+> The best model is not the most accurate —  
+> it’s the one that **catches the most fraud without overwhelming the system with false positives**
 
 # 🎯 Threshold Tuning Experiment
 
